@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
+  <meta name="theme-color" content="#2e7d32">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <title>Fresh Drop POS V3 | Juice Bar</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app">
+    <!-- MAIN POS VIEW - Direct Access, No Login -->
+    <div id="posView" class="view active">
+      <!-- Top Bar with Role Switcher -->
+      <header class="pos-header">
+        <div class="user-badge">
+          <select id="roleSwitcher" class="role-select">
+            <option value="staff">🥤 Staff Mode</option>
+            <option value="admin">👑 Admin Mode</option>
+          </select>
+        </div>
+        <button id="resetAllBtn" class="icon-btn" title="Reset All Data">🔄</button>
+      </header>
+
+      <!-- Tab Navigation -->
+      <div class="tab-bar">
+        <button data-tab="orders" class="tab-btn active">📋 ORDERS</button>
+        <button data-tab="stock" class="tab-btn">📦 STOCK</button>
+        <button data-tab="reports" class="tab-btn">📊 REPORTS</button>
+        <button data-tab="admin" id="adminTabBtn" class="tab-btn">⚙️ ADMIN</button>
+      </div>
+
+      <!-- ORDERS TAB -->
+      <div id="ordersTab" class="tab-content active">
+        <div class="tables-bar">
+          <div class="table-scroll">
+            <button data-table="table1" class="table-chip active">🍽️ Table 1</button>
+            <button data-table="table2" class="table-chip">🍽️ Table 2</button>
+            <button data-table="table3" class="table-chip">🍽️ Table 3</button>
+            <button data-table="table4" class="table-chip">🍽️ Table 4</button>
+            <button data-table="table5" class="table-chip">🍽️ Table 5</button>
+            <button data-table="takeaway" class="table-chip">🛍️ Takeaway</button>
+          </div>
+        </div>
+
+        <!-- Menu Grid -->
+        <div class="menu-grid" id="menuGrid"></div>
+
+        <!-- Cart Section -->
+        <div class="cart-panel">
+          <div class="cart-header">
+            <span>🛒 Current Cart · <span id="currentTableName">Table 1</span></span>
+            <button id="clearCartBtn" class="small-btn">Clear</button>
+          </div>
+          <div id="cartItems" class="cart-list"></div>
+          <div class="cart-total">TOTAL: LKR <span id="cartTotal">0</span></div>
+          <button id="checkoutBtn" class="btn btn-primary">✅ CHECKOUT & DEDUCT STOCK</button>
+        </div>
+      </div>
+
+      <!-- STOCK TAB -->
+      <div id="stockTab" class="tab-content">
+        <div class="search-bar"><input type="text" id="stockSearch" placeholder="🔍 Search ingredient..."></div>
+        <div class="low-stock-banner" id="lowStockBanner"></div>
+        <div id="stockList" class="stock-list"></div>
+        <div id="stockAdminActions" style="margin-top: 1rem; display: flex; gap: 0.6rem; flex-wrap: wrap;">
+          <button id="addIngredientBtn" class="btn btn-outline">➕ Add Ingredient</button>
+          <button id="restockSelectedBtn" class="btn btn-outline">📦 Restock Selected</button>
+        </div>
+      </div>
+
+      <!-- REPORTS TAB -->
+      <div id="reportsTab" class="tab-content">
+        <div class="dashboard-cards" id="dashboardCards"></div>
+        <div class="report-buttons">
+          <button id="dailyReportBtn" class="btn btn-small">📅 Daily Report</button>
+          <button id="weeklyReportBtn" class="btn btn-small">📆 Weekly Report</button>
+          <button id="monthlyReportBtn" class="btn btn-small">📈 Monthly Report</button>
+        </div>
+        <div id="reportDisplay" class="report-display"></div>
+      </div>
+
+      <!-- ADMIN TAB -->
+      <div id="adminTab" class="tab-content">
+        <div class="admin-section">
+          <h3>🔐 Admin Control</h3>
+          <button id="resetDayBtn" class="btn btn-warning">🔄 Reset Day (Clear Today)</button>
+          <button id="closeDayBtn" class="btn btn-danger">🏁 CLOSE DAY & ARCHIVE</button>
+          <div class="history-viewer">
+            <h4>📜 Previous Days History</h4>
+            <div id="historyList" class="history-list"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
